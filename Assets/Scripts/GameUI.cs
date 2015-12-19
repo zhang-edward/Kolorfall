@@ -11,6 +11,8 @@ public class GameUI : MonoBehaviour {
 	{
 		if (scoreTextIncrementer < GameManager.instance.score)
 			scoreTextIncrementer ++;
+		else if (scoreTextIncrementer > GameManager.instance.score)
+			scoreTextIncrementer --;
 		scoreText.text = scoreTextIncrementer.ToString ();
 	}
 

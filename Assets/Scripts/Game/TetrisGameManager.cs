@@ -312,15 +312,23 @@ public class TetrisGameManager : MonoBehaviour {
 			if (rowClear)
 			{
 				numRowsCleared ++;
-				clearRow (y);
+				StartCoroutine(clearRow (y));
 			}
 		}
 		int pointsScored = 5 + (numRowsCleared - 1) * 5;
 		GameManager.instance.score += pointsScored;
 	}
 
-	private void clearRow(int row)
+	private IEnumerator clearRow(int row)
 	{
+		for (int i = 0; i < BOARD_WIDTH; i ++)
+		{
+			board[row, i].anim.SetTrigger("Out");
+		}
+
+		// wait for animation to finish
+		yield return new WaitForSeconds(20f/60f);
+
 		for (int y = row + 1; y < BOARD_HEIGHT; y ++)
 		{
 			for (int x = 0; x < BOARD_WIDTH; x ++)

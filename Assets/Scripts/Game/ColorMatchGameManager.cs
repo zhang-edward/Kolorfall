@@ -33,7 +33,7 @@ public class ColorMatchGameManager : MonoBehaviour {
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
 				//Debug.Log ("Gen Row");
-				GenerateRow();
+				StartCoroutine("GenerateRow");
 			}
 		}
 
@@ -97,22 +97,35 @@ public class ColorMatchGameManager : MonoBehaviour {
 	}
 
 	// pre: no tiles in last row
-	private void GenerateRow()
+	private IEnumerator GenerateRow()
 	{
-		for (int y = GRID_HEIGHT - 2; y >= 0; y --)
+		for (int y = 0; y < GRID_HEIGHT; y ++)
 		{
 			for (int x = 0; x < GRID_WIDTH; x ++)
 			{
 				// if there is a tile on the last row, game over
 				if (y == GRID_HEIGHT - 2 && grid[y, x].TileColor != -1)
 					GameManager.instance.GameOver();
+				grid[y, x].anim.SetTrigger("Rise");
+			}
+		}
+
+		// wait for animation to finish
+		yield return new WaitForSeconds(20f/60f);
+
+		for (int y = GRID_HEIGHT - 2; y >= 0; y --)
+		{
+			for (int x = 0; x < GRID_WIDTH; x ++)
+			{
 				grid[y + 1, x].TileColor = grid[y, x].TileColor;
 			}
 		}
+
 		// generate new row
 		for (int x = 0; x < GRID_WIDTH; x ++)
 		{
 			grid[0, x].TileColor = Random.Range (0, numColors);
+			grid[0, x].anim.SetTrigger ("In");
 		}
 	}
 
@@ -157,6 +170,7 @@ public class ColorMatchGameManager : MonoBehaviour {
 		}
 		GameManager.instance.score += clearedList.Count;
 		// TODO: floating message which says how many points earned
+
 		
 		// send the piece data to the tetris game
 		GameManager.instance.sendTetrisData(tetrisPieceData, testTileColor);
@@ -167,7 +181,7 @@ public class ColorMatchGameManager : MonoBehaviour {
 		// every TURNS_PER_PROG matches, generate a new row
 		// also generate a new row if the board is somehow completely empty (very rare)
 		if (turns % TURNS_PER_PROG == 0 || checkIfBoardEmpty())
-			GenerateRow();
+			StartCoroutine("GenerateRow");
 	}
 
 	// recursive method
