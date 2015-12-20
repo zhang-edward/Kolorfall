@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9f288c6a41dc8134cb63f18dcb147ab7
-timeCreated: 1448576864
+timeCreated: 1450594700
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -14,6 +14,18 @@ TextureImporter:
     21300014: UI_Buttons_7
     21300016: UI_Buttons_8
     21300018: UI_Buttons_9
+    21300020: UI_Buttons_10
+    21300022: UI_Buttons_11
+    21300024: UI_Buttons_12
+    21300026: UI_Buttons_13
+    21300028: UI_Buttons_14
+    21300030: UI_Buttons_15
+    21300032: UI_Buttons_16
+    21300034: UI_Buttons_17
+    21300036: UI_Buttons_18
+    21300038: UI_Buttons_19
+    21300040: UI_Buttons_20
+    21300042: UI_Buttons_21
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -155,6 +167,126 @@ TextureImporter:
         x: 64
         y: 0
         width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_12
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_13
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 48
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_14
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_15
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 48
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 80
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_17
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 80
+        width: 64
+        height: 48
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_18
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_19
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_20
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: UI_Buttons_21
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: .5, y: .5}

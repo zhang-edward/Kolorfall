@@ -6,7 +6,7 @@ public class TextFade : MonoBehaviour {
 	Text text;
 
 	// time before fading starts, in seconds
-	public float fadeTimer = 1.0f;
+	private float fadeTimer = 1.0f;
 
 	void Awake()
 	{
@@ -21,5 +21,11 @@ public class TextFade : MonoBehaviour {
 
 		if (text.color.a <= 0)
 			gameObject.SetActive(false);
+	}
+
+	void OnEnable()
+	{
+		fadeTimer = 1.0f;
+		text.color = new Color (1f, 1f, 1f, 1f);
 	}
 }

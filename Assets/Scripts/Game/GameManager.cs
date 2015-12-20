@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour {
 
 	public static GameManager instance;
 
+	public GameUI gui;
+
 	TetrisGameManager GM_tetris;
 	ColorMatchGameManager GM_colorMatch;
 
@@ -52,5 +54,10 @@ public class GameManager : MonoBehaviour {
 		score = 0;
 		GM_colorMatch.ResetGrid();
 		GM_tetris.ResetBoard();
+	}
+
+	public void CreateScoreFloater(Vector3 pos, int points)
+	{
+		gui.CreateScoreFloater(pos, points);
 	}
 }

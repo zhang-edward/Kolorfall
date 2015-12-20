@@ -7,6 +7,8 @@ public class GameUI : MonoBehaviour {
 	private int scoreTextIncrementer;
 	public Text scoreText;
 
+	public GameObject scoreFloater;
+
 	void Update()
 	{
 		if (scoreTextIncrementer < GameManager.instance.score)
@@ -29,5 +31,21 @@ public class GameUI : MonoBehaviour {
 	public void UnPause()
 	{
 		Time.timeScale = 1.0f;
+	}
+
+	public void CreateScoreFloater(Vector3 worldPos, int points)
+	{
+		RectTransform canvasTransform = GetComponent<RectTransform>();
+		RectTransform rTrans = scoreFloater.GetComponent<RectTransform>();
+
+		Vector2 viewportPos = Camera.main.WorldToViewportPoint(worldPos);
+		Vector2 screenPos = new Vector2(
+			((viewportPos.x * canvasTransform.sizeDelta.x) - (canvasTransform.sizeDelta.x * 0.5f)),
+			((viewportPos.y * canvasTransform.sizeDelta.y) - (canvasTransform.sizeDelta.y * 0.5f)));
+
+		rTrans.anchoredPosition = screenPos;
+
+		scoreFloater.GetComponent<Text>().text = "+" + points;
+		scoreFloater.gameObject.SetActive (true);
 	}
 }

@@ -162,16 +162,25 @@ public class ColorMatchGameManager : MonoBehaviour {
 	// also send the piece data to the tetris board
 	public void ClearTiles()
 	{
+		int points = clearedList.Count;
+
 		// after testing, set each cleared tile to be destroyed
-		foreach (GameTile cmTile in clearedList)
+		foreach (GameTile tile in clearedList)
 		{
 			// TODO: effects and shit
-			cmTile.TileColor = -1;
+			//tile.anim.SetTrigger ("Out");
+			tile.TileColor = -1;
 		}
-		GameManager.instance.score += clearedList.Count;
+		GameManager.instance.score += points;
 		// TODO: floating message which says how many points earned
+		Vector3[] posArr = new Vector3[clearedList.Count];
+		for (int i = 0; i < clearedList.Count; i ++)
+		{
+			posArr[i] = clearedList[i].transform.position;
+		}
+		GameManager.instance.CreateScoreFloater(AverageVector(posArr), points);
 
-		
+
 		// send the piece data to the tetris game
 		GameManager.instance.sendTetrisData(tetrisPieceData, testTileColor);
 
@@ -260,6 +269,20 @@ public class ColorMatchGameManager : MonoBehaviour {
 
 
 	//======================= Array manipulation methods and other utility methods =========================//
+	private Vector3 AverageVector(params Vector3[] vects)
+	{
+		Vector3 sum = Vector3.zero;
+		foreach (Vector3 vect in vects)
+		{
+			sum.x += vect.x;
+			sum.y += vect.y;
+		}
+		float length = vects.Length;	// float because we want float math in the return value
+
+
+		return new Vector3(sum.x/length, sum.y/length);
+	}
+
 	private void CopyGrid(GameTile[,] source, int[,] dest)
 	{
 		for (int y = 0; y < GRID_HEIGHT; y ++)
