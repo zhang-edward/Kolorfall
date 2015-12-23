@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour {
 	// DEBUG
 	public bool DEBUG_MODE = false;
 	// DEBUG
+
+	public CameraShake camShake;
 
 	void Awake()
 	{
@@ -59,5 +61,10 @@ public class GameManager : MonoBehaviour {
 	public void CreateScoreFloater(Vector3 pos, int points)
 	{
 		gui.CreateScoreFloater(pos, points);
+	}
+
+	public void CameraShake(float time, float amt)
+	{
+		camShake.Shake (time, amt);
 	}
 }

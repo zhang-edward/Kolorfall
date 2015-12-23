@@ -33,6 +33,11 @@ public class GameUI : MonoBehaviour {
 		Time.timeScale = 1.0f;
 	}
 
+	public void MainMenu()
+	{
+		Application.LoadLevel ("MainMenu");
+	}
+
 	public void CreateScoreFloater(Vector3 worldPos, int points)
 	{
 		RectTransform canvasTransform = GetComponent<RectTransform>();

@@ -216,6 +216,7 @@ public class TetrisGameManager : MonoBehaviour {
 
 	public void QuickFall()
 	{
+		GameManager.instance.CameraShake(0.1f, 0.1f);
 		while (FallPiece())
 		{}
 	}

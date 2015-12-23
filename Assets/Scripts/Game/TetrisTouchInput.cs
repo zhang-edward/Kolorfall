@@ -79,31 +79,8 @@ public class TetrisTouchInput : MonoBehaviour {
 						else
 							tgm.moveRight();
 					}
-;
-
 				}
 			}
 		}
 	}
-
-/*	IEnumerator checkXMovement()
-	{
-		while (true)
-		{
-			if (Input.touchCount > 0)
-			{
-				Touch touch = Input.touches[0];
-				if (touch.phase == TouchPhase.Moved)
-				{
-					float xMovement = touch.position.x - startPosX.x;
-					Debug.Log ("x movement: " + (xMovement));
-				}
-				if (touch.phase == TouchPhase.Began)
-				{
-					startPosX = touch.position.x;
-				}
-			}
-			yield return null;
-		}
-	}*/
 }

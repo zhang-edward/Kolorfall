@@ -2,25 +2,22 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class ThemeController : MonoBehaviour {
+public class ThemeSetting : MonoBehaviour {
 
-	private Image img;
+	// (we can just use built-in button functions, no custom ui script required)
+	public Image buttonImage;
 
 	public Color[] themeColor = new Color[5];
 	private int curThemeColor = 0;
-
-
-	void Awake()
-	{
-		img = GetComponent<Image>();
-	}
 
 	void Update()
 	{
 		Color bgColor = themeColor[curThemeColor];
 
-		img.color = bgColor;
+		buttonImage.color = bgColor;
 		Camera.main.backgroundColor = bgColor;
+
+		SettingsManager.instance.curThemeColor = curThemeColor;
 	}
 
 	public void changeThemeLeft()
