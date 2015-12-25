@@ -8,6 +8,12 @@ public class GameUI : MonoBehaviour {
 	public Text scoreText;
 
 	public GameObject scoreFloater;
+	public GameObject onScreenButtons;
+
+	void Start()
+	{
+		SettingsManager.instance.onScreenButtons = onScreenButtons;
+	}
 
 	void Update()
 	{
@@ -35,6 +41,7 @@ public class GameUI : MonoBehaviour {
 
 	public void MainMenu()
 	{
+		UnPause();
 		Application.LoadLevel ("MainMenu");
 	}
 

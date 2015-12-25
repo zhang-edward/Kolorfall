@@ -172,7 +172,7 @@ public class ColorMatchGameManager : MonoBehaviour {
 			tile.TileColor = -1;
 		}
 		GameManager.instance.score += points;
-		// TODO: floating message which says how many points earned
+
 		Vector3[] posArr = new Vector3[clearedList.Count];
 		for (int i = 0; i < clearedList.Count; i ++)
 		{

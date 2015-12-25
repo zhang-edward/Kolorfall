@@ -5,9 +5,18 @@ public class SettingsManager : MonoBehaviour {
 
 	public static SettingsManager instance;
 
-	public int ctrlMode;
-	public int curThemeColor;
-	public bool mute;
+	public enum ControlMode{
+		OnScreenButtons,
+		TouchScreen
+	}
+
+	// Settings
+	public ControlMode ControlSetting;
+	public Color ThemeColor;
+	public bool Mute;
+	
+	public GameObject onScreenButtons;
+	public TetrisTouchInput tti;
 
 	void Awake()
 	{
@@ -18,5 +27,23 @@ public class SettingsManager : MonoBehaviour {
 			Destroy (gameObject);
 		
 		DontDestroyOnLoad(gameObject);
+	}
+
+	void Update()
+	{
+		if (Application.loadedLevelName.Equals("Game"))
+		{
+			if (ControlSetting == ControlMode.OnScreenButtons)
+			{
+				onScreenButtons.SetActive(true);
+				tti.enabled = false;
+			}
+			else
+			{
+				onScreenButtons.SetActive (false);
+				tti.enabled = true;
+			}
+		}
+		Camera.main.backgroundColor = ThemeColor;
 	}
 }

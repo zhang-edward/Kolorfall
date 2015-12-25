@@ -20,13 +20,7 @@ public class GameManager : MonoBehaviour {
 
 	void Awake()
 	{
-		// Make this a singleton
-		if (instance == null)
-			instance = this;
-		else if (instance != this)
-			Destroy (gameObject);
-		
-		DontDestroyOnLoad(gameObject);
+		instance = this;
 	}
 
 	void Start()
@@ -36,6 +30,8 @@ public class GameManager : MonoBehaviour {
 
 		GM_tetris.InitBoard();
 		GM_colorMatch.InitGrid();
+
+		GetComponent<Animator>().SetTrigger("In");
 	}
 
 	public void sendTetrisData(int[,] tetrisPieceData, int tileColor)
@@ -48,7 +44,7 @@ public class GameManager : MonoBehaviour {
 
 	public void GameOver()
 	{
-		Debug.Log ("Game Over");
+
 	}
 
 	public void Restart()

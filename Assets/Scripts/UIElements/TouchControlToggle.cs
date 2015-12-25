@@ -4,9 +4,8 @@ using System.Collections;
 
 public class TouchControlToggle : MonoBehaviour {
 
-	// Custom UI fuctions to control switching of ctrlMode in TouchControlSetting
-	public TouchControlSetting.ControlMode controlMode;
-	public TouchControlSetting touchSetting;
+	// 0 = TouchScreen, 1 = OnScreenButtons
+	public int controlMode;
 
 	public Sprite touchScreenDown;
 	public Sprite touchScreenUp;
@@ -22,29 +21,32 @@ public class TouchControlToggle : MonoBehaviour {
 
 	public void SwitchControlMode()
 	{
-		Debug.Log ("Click");
+		//Debug.Log ("Click");
 		// toggle between touch control modes
-		if (controlMode == TouchControlSetting.ControlMode.TouchScreen)
+		if (controlMode == 0)
 		{
-			controlMode = TouchControlSetting.ControlMode.OnScreenButtons;
+			controlMode = 1;
+			SettingsManager.instance.ControlSetting = 
+				SettingsManager.ControlMode.OnScreenButtons;
 		}
 
-		else if (controlMode == TouchControlSetting.ControlMode.OnScreenButtons)
+		else if (controlMode == 1)
 		{
-			controlMode = TouchControlSetting.ControlMode.TouchScreen;
+			controlMode = 0;
+			SettingsManager.instance.ControlSetting = 
+				SettingsManager.ControlMode.TouchScreen;
 		}
-		touchSetting.ctrlmode = controlMode;
+
 	}
 
 	public void OnPointerDown()
 	{
-		Debug.Log ("Down");
-		if (controlMode == TouchControlSetting.ControlMode.TouchScreen)
+		if (controlMode == 0)
 		{
 			image.sprite = onScreenButtonsDown;
 		}
 		
-		else if (controlMode == TouchControlSetting.ControlMode.OnScreenButtons)
+		else if (controlMode == 1)
 		{
 			image.sprite = touchScreenDown;
 		}
@@ -52,13 +54,12 @@ public class TouchControlToggle : MonoBehaviour {
 
 	public void OnPointerUp()
 	{
-		Debug.Log ("Up");
-		if (controlMode == TouchControlSetting.ControlMode.TouchScreen)
+		if (controlMode == 0)
 		{
 			image.sprite = onScreenButtonsUp;
 		}
 		
-		else if (controlMode == TouchControlSetting.ControlMode.OnScreenButtons)
+		else if (controlMode == 1)
 		{
 			image.sprite = touchScreenUp;
 		}

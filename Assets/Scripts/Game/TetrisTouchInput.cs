@@ -21,6 +21,7 @@ public class TetrisTouchInput : MonoBehaviour {
 	void Start()
 	{
 		tgm = GetComponent<TetrisGameManager>();
+		SettingsManager.instance.tti = this;
 /*		StartCoroutine("checkXMovement");*/
 	}
 

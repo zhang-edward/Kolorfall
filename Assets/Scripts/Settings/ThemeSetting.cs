@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
 
@@ -13,11 +13,9 @@ public class ThemeSetting : MonoBehaviour {
 	void Update()
 	{
 		Color bgColor = themeColor[curThemeColor];
-
 		buttonImage.color = bgColor;
-		Camera.main.backgroundColor = bgColor;
 
-		SettingsManager.instance.curThemeColor = curThemeColor;
+		SettingsManager.instance.ThemeColor = bgColor;
 	}
 
 	public void changeThemeLeft()
