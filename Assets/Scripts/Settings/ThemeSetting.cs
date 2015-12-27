@@ -8,25 +8,31 @@ public class ThemeSetting : MonoBehaviour {
 	public Image buttonImage;
 
 	public Color[] themeColor = new Color[5];
-	private int curThemeColor = 0;
+	private int themeIndex = 0;
+
+	void Start()
+	{
+		themeIndex = SettingsManager.instance.ThemeIndex; 
+	}
 
 	void Update()
 	{
-		Color bgColor = themeColor[curThemeColor];
+		Color bgColor = themeColor[themeIndex];
 		buttonImage.color = bgColor;
 
+		SettingsManager.instance.ThemeIndex = themeIndex;
 		SettingsManager.instance.ThemeColor = bgColor;
 	}
 
 	public void changeThemeLeft()
 	{
-		if (curThemeColor > 0)
-			curThemeColor --;
+		if (themeIndex > 0)
+			themeIndex --;
 	}
 
 	public void changeThemeRight()
 	{
-		if (curThemeColor < themeColor.Length - 1)
-			curThemeColor ++;
+		if (themeIndex < themeColor.Length - 1)
+			themeIndex ++;
 	}
 }

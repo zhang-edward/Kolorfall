@@ -10,6 +10,9 @@ public class GameUI : MonoBehaviour {
 	public GameObject scoreFloater;
 	public GameObject onScreenButtons;
 
+	public GameObject gameOverPanel;
+	public Text gameOverPanelText;
+
 	void Start()
 	{
 		SettingsManager.instance.onScreenButtons = onScreenButtons;
@@ -27,6 +30,8 @@ public class GameUI : MonoBehaviour {
 	public void Restart()
 	{
 		GameManager.instance.Restart();
+		gameOverPanel.SetActive (false);
+		scoreText.text = "0";
 	}
 
 	public void Pause()
@@ -43,6 +48,18 @@ public class GameUI : MonoBehaviour {
 	{
 		UnPause();
 		Application.LoadLevel ("MainMenu");
+	}
+
+	public void Share()
+	{
+
+	}
+
+	public void GameOver()
+	{
+		gameOverPanel.SetActive (true);
+		gameOverPanel.GetComponent<Animator>().SetTrigger("Up");
+		gameOverPanelText.text = "Score:\n" + GameManager.instance.score;
 	}
 
 	public void CreateScoreFloater(Vector3 worldPos, int points)

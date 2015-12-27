@@ -178,7 +178,7 @@ public class ColorMatchGameManager : MonoBehaviour {
 		{
 			posArr[i] = clearedList[i].transform.position;
 		}
-		GameManager.instance.CreateScoreFloater(AverageVector(posArr), points);
+		// GameManager.instance.CreateScoreFloater(AverageVector(posArr), points);
 
 
 		// send the piece data to the tetris game

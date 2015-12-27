@@ -13,6 +13,7 @@ public class SettingsManager : MonoBehaviour {
 	// Settings
 	public ControlMode ControlSetting;
 	public Color ThemeColor;
+	public int ThemeIndex;
 	public bool Mute;
 	
 	public GameObject onScreenButtons;

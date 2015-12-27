@@ -14,6 +14,6 @@ public class PanelScript : MonoBehaviour {
 	void Update()
 	{
 		Color themeColor = SettingsManager.instance.ThemeColor;
-		img.color = new Color(themeColor.r, themeColor.g, themeColor.b, 0.9f);
+		img.color = new Color(themeColor.r, themeColor.g, themeColor.b);
 	}
 }
