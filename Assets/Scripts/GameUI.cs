@@ -7,7 +7,7 @@ public class GameUI : MonoBehaviour {
 	private int scoreTextIncrementer;
 	public Text scoreText;
 
-	public Text scoreMultiplierText;
+	public ScoreMultiplier scoreMultiplierText;
 
 	public GameObject scoreFloater;
 	public GameObject onScreenButtons;
@@ -83,6 +83,6 @@ public class GameUI : MonoBehaviour {
 
 	public void SetScoreMultiplier (int multiplier)
 	{
-		scoreMultiplierText.text = "X" + multiplier;
+		scoreMultiplierText.SetText(multiplier);
 	}
 }

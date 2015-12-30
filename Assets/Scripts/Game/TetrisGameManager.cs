@@ -344,6 +344,7 @@ public class TetrisGameManager : MonoBehaviour {
 		if (numRowsCleared > 0)
 		{
 			Combo ++;
+			GameManager.instance.CreateScoreMultiplier(Combo);
 
 			// POINTS FORMULA
 			int pointsScored = (int)(Mathf.Pow (2f, (numRowsCleared))) * Combo;
@@ -353,6 +354,7 @@ public class TetrisGameManager : MonoBehaviour {
 		else
 		{
 			Combo = 0;
+			GameManager.instance.CreateScoreMultiplier(1);
 		}
 	}
 
