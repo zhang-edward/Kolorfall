@@ -1,12 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-public class TextFade : MonoBehaviour {
+
+public class ScoreFloater : MonoBehaviour {
 
 	Text text;
 
 	// time before fading starts, in seconds
-	private float fadeTimer = 1.0f;
+	private float fadeTimer = 0.5f;
 
 	void Awake()
 	{
@@ -23,9 +24,9 @@ public class TextFade : MonoBehaviour {
 			gameObject.SetActive(false);
 	}
 
-	void OnEnable()
+	public void ResetFade()
 	{
 		fadeTimer = 1.0f;
-		text.color = new Color (1f, 1f, 1f, 1f);
+		text.color = new Color(1f, 1f, 1f, 1f);
 	}
 }

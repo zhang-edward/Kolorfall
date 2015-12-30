@@ -2,68 +2,64 @@
 using System.Collections;
 using UnityEngine.UI;
 
-public class GameUI : MonoBehaviour {
-
+public class TutorialUI : MonoBehaviour {
+	
 	private int scoreTextIncrementer;
 	public Text scoreText;
-
-	public Text scoreMultiplierText;
-
+	
 	public GameObject scoreFloater;
 	public GameObject onScreenButtons;
-
+	
 	public GameObject gameOverPanel;
 	public Text gameOverPanelText;
+
+	public Text[] tutorialText;
+	public GameObject[] tutorialHelperObjects;
 
 	void Start()
 	{
 		SettingsManager.instance.onScreenButtons = onScreenButtons;
 	}
-
+	
 	void Update()
 	{
-		if (scoreTextIncrementer < GameManager.instance.score)
+		if (scoreTextIncrementer < TutorialManager.instance.score)
 			scoreTextIncrementer ++;
-		else if (scoreTextIncrementer > GameManager.instance.score)
+		else if (scoreTextIncrementer > TutorialManager.instance.score)
 			scoreTextIncrementer --;
 		scoreText.text = scoreTextIncrementer.ToString ();
 	}
-
+	
 	public void Restart()
 	{
-		GameManager.instance.Restart();
+		TutorialManager.instance.Restart();
 		gameOverPanel.SetActive (false);
 		scoreText.text = "0";
 	}
-
+	
 	public void Pause()
 	{
 		Time.timeScale = 0.0f;
 	}
-
+	
 	public void UnPause()
 	{
 		Time.timeScale = 1.0f;
 	}
-
+	
 	public void MainMenu()
 	{
 		UnPause();
 		Application.LoadLevel ("MainMenu");
 	}
-
-	public void Share()
-	{
-
-	}
-
+	
 	public void GameOver()
 	{
 		gameOverPanel.SetActive (true);
 		gameOverPanel.GetComponent<Animator>().SetTrigger("Up");
-		gameOverPanelText.text = "Score:\n" + GameManager.instance.score;
+		gameOverPanelText.text = "Score:\n" + TutorialManager.instance.score;
 	}
-
+	
 	public void CreateScoreFloater(Vector3 worldPos, int points)
 	{
 		/*RectTransform canvasTransform = GetComponent<RectTransform>();
@@ -75,14 +71,20 @@ public class GameUI : MonoBehaviour {
 			((viewportPos.y * canvasTransform.sizeDelta.y) - (canvasTransform.sizeDelta.y * 0.5f)));
 
 		rTrans.anchoredPosition = screenPos;*/
-
+		
 		scoreFloater.GetComponent<Text>().text = "+" + points;
 		scoreFloater.gameObject.SetActive (true);
 		scoreFloater.GetComponent<ScoreFloater>().ResetFade();
 	}
 
-	public void SetScoreMultiplier (int multiplier)
+	public void DisplayTutorial(int index)
 	{
-		scoreMultiplierText.text = "X" + multiplier;
+		foreach (GameObject o in tutorialHelperObjects)
+			o.SetActive(false);
+		foreach (Text t in tutorialText)
+			t.gameObject.SetActive(false);
+
+		tutorialText[index].gameObject.SetActive(true);
+		tutorialHelperObjects[index].SetActive(true);
 	}
 }

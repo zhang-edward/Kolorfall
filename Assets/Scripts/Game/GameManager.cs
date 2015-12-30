@@ -7,8 +7,8 @@ public class GameManager : MonoBehaviour {
 
 	public GameUI gui;
 
-	TetrisGameManager GM_tetris;
-	ColorMatchGameManager GM_colorMatch;
+	protected TetrisGameManager GM_tetris;
+	protected ColorMatchGameManager GM_colorMatch;
 
 	public ColorMatchInput Input_cm;
 	public TetrisTouchInput Input_tetris;
@@ -74,10 +74,16 @@ public class GameManager : MonoBehaviour {
 		GM_tetris.ResetBoard();
 	}
 
-	/*public void CreateScoreFloater(Vector3 pos, int points)
+	// virtual because TutorialManager has a separate gui
+	public virtual void CreateScoreFloater(Vector3 pos, int points)
 	{
 		gui.CreateScoreFloater(pos, points);
-	}*/
+	}
+
+	public virtual void CreateScoreMultiplier(int multiplier)
+	{
+		gui.SetScoreMultiplier(multiplier);
+	}
 
 	public void CameraShake(float time, float amt)
 	{
