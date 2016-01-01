@@ -13,6 +13,11 @@ public class ScoreMultiplier : MonoBehaviour {
 
 	public void SetText (int multiplier)
 	{
+		if (multiplier <= 0)
+			gameObject.SetActive(false);
+		else
+			gameObject.SetActive(true);
+
 		text.text = "X" + multiplier;
 		text.fontSize = 13 + multiplier;
 		if (multiplier >= 15)

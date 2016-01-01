@@ -344,18 +344,18 @@ public class TetrisGameManager : MonoBehaviour {
 		if (numRowsCleared > 0)
 		{
 			Combo ++;
-			GameManager.instance.CreateScoreMultiplier(Combo);
 
 			// POINTS FORMULA
-			int pointsScored = (int)(Mathf.Pow (2f, (numRowsCleared))) * Combo;
+			int pointsScored = (int)(2f + Mathf.Pow (2f, (numRowsCleared))) * Combo;
 			GameManager.instance.score += pointsScored;
 			GameManager.instance.CreateScoreFloater(Vector3.zero, pointsScored);
 		}
 		else
 		{
 			Combo = 0;
-			GameManager.instance.CreateScoreMultiplier(1);
 		}
+
+		GameManager.instance.CreateScoreMultiplier(Combo);
 	}
 
 	private IEnumerator clearRow(int row)
