@@ -26,6 +26,8 @@ public class TetrisGameManager : MonoBehaviour {
 
 	public Transform BG;
 
+	public AudioClip QuickFallSound;
+
 	void Update()
 	{
 #if UNITY_STANDALONE
@@ -242,9 +244,11 @@ public class TetrisGameManager : MonoBehaviour {
 		if (!havePiece)
 			return;
 
-		GameManager.instance.CameraShake(0.1f, 0.1f);
 		while (FallPiece())
 		{}
+
+		GameManager.instance.CameraShake(0.1f, 0.1f);
+		SoundManager.instance.RandomizeSfx(QuickFallSound);
 	}
 
 	/*private IEnumerator FallPieceRegular()
@@ -356,7 +360,8 @@ public class TetrisGameManager : MonoBehaviour {
 		}
 		else
 		{
-			Combo = 0;
+			if (Combo > 0)
+				Combo --;
 		}
 
 		GameManager.instance.CreateScoreMultiplier(Combo);

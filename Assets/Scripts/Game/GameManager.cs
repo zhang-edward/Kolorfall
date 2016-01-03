@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour {
 		// reset score, call reset methods for game managers
 		score = 0;
 
+		gui.scoreText.text = "" + 0;
+
 		Input_cm.enabled = true;
 		Input_tetris.enabled = true;
 
