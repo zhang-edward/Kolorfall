@@ -50,6 +50,7 @@ public class TouchControlToggle : MonoBehaviour {
 		{
 			image.sprite = touchScreenDown;
 		}
+		SoundManager.instance.PlayUISound();
 	}
 
 	public void OnPointerUp()

@@ -238,6 +238,10 @@ public class TetrisGameManager : MonoBehaviour {
 
 	public void QuickFall()
 	{
+		// if do not have piece, do not attempt to make a piece fall
+		if (!havePiece)
+			return;
+
 		GameManager.instance.CameraShake(0.1f, 0.1f);
 		while (FallPiece())
 		{}

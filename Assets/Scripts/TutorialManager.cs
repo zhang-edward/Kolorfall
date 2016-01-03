@@ -33,6 +33,11 @@ public class TutorialManager : GameManager {
 	{
 		tutorialGui.CreateScoreFloater(pos, points);
 	}
+
+	public override void CreateScoreMultiplier(int multiplier)
+	{
+		tutorialGui.SetScoreMultiplier(multiplier);
+	}
 	
 	public void DisplayTutorial(int index)
 	{
@@ -46,6 +51,21 @@ public class TutorialManager : GameManager {
 			yield return null;
 
 		DisplayTutorial (1);
+		yield return new WaitForSeconds(5.0f);
+		DisplayTutorial (2);
+		while (GM_tetris.HavePiece)
+			yield return null;
 
+		DisplayTutorial(3);
+		while (GM_tetris.Combo == 0)
+			yield return null;
+
+		DisplayTutorial(4);
+		yield return new WaitForSeconds(5.0f);
+
+		DisplayTutorial (5);
+		yield return new WaitForSeconds(5.0f);
+
+		DisplayTutorial(6);
 	}
 }

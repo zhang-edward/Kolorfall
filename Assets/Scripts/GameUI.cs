@@ -29,7 +29,7 @@ public class GameUI : MonoBehaviour {
 		scoreText.text = scoreTextIncrementer.ToString ();
 	}
 
-	public void Restart()
+	public virtual void Restart()
 	{
 		GameManager.instance.Restart();
 		gameOverPanel.SetActive (false);
@@ -57,7 +57,7 @@ public class GameUI : MonoBehaviour {
 
 	}
 
-	public void GameOver()
+	public virtual void GameOver()
 	{
 		gameOverPanel.SetActive (true);
 		gameOverPanel.GetComponent<Animator>().SetTrigger("Up");
