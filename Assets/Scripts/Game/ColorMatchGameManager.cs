@@ -24,6 +24,8 @@ public class ColorMatchGameManager : MonoBehaviour {
 	private int[,] tetrisPieceData = new int[GRID_HEIGHT, GRID_WIDTH];
 
 	public Transform BG;
+
+	public AudioClip MatchSound;
 	
 	void Update()
 	{
@@ -182,6 +184,7 @@ public class ColorMatchGameManager : MonoBehaviour {
 		}
 		GameManager.instance.CreateScoreFloater(AverageVector(posArr), points);
 
+		SoundManager.instance.RandomizeSfx(MatchSound);
 
 		// send the piece data to the tetris game
 		GameManager.instance.sendTetrisData(tetrisPieceData, testTileColor);
