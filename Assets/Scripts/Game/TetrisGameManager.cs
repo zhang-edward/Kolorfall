@@ -22,6 +22,8 @@ public class TetrisGameManager : MonoBehaviour {
 	// the tetrisTile prefab
 	public GameObject tetrisTile;
 
+	public int Combo { get; private set; }
+
 	public Transform BG;
 
 	void Update()
@@ -59,6 +61,10 @@ public class TetrisGameManager : MonoBehaviour {
 				moveLeft();
 		}
 #endif
+		if (havePiece)
+		{
+			//TODO: ghost of piece being placed
+		}
 	}
 
 	public void InitBoard()
@@ -162,8 +168,8 @@ public class TetrisGameManager : MonoBehaviour {
 				}
 			}
 		}
-		if (!GameManager.instance.DEBUG_MODE)
-			StartCoroutine("FallPieceRegular");
+		/*if (!GameManager.instance.DEBUG_MODE)
+			StartCoroutine("FallPieceRegular");*/
 	}
 
 	private bool FallPiece()
@@ -211,6 +217,22 @@ public class TetrisGameManager : MonoBehaviour {
 				}
 			}
 		}
+		else
+		{
+			// set piece to be solid
+			for (int y = 0; y < BOARD_HEIGHT; y ++)
+			{
+				for (int x = 0; x < BOARD_WIDTH; x ++)
+				{
+					if (!board[y, x].isSolid)
+						board[y, x].isSolid = true;
+				}
+			}
+			havePiece = false;
+			// check if a row is clear
+			CheckClearRow();
+		}
+
 		return isFalling;
 	}
 
@@ -221,7 +243,7 @@ public class TetrisGameManager : MonoBehaviour {
 		{}
 	}
 
-	private IEnumerator FallPieceRegular()
+	/*private IEnumerator FallPieceRegular()
 	{
 		while(havePiece)
 		{
@@ -244,7 +266,7 @@ public class TetrisGameManager : MonoBehaviour {
 			}
 		}
 		//Debug.Log ("FallPiece: Exit");
-	}
+	}*/
 
 	public void moveRight()
 	{
@@ -292,10 +314,12 @@ public class TetrisGameManager : MonoBehaviour {
 		}
 	}
 
+	// ================ NOT BEING USED ================
 	public void moveDown()
 	{
 		FallPiece ();
 	}
+	// ================ NOT BEING USED ================
 
 	private void CheckClearRow()
 	{
@@ -316,8 +340,22 @@ public class TetrisGameManager : MonoBehaviour {
 				StartCoroutine(clearRow (y));
 			}
 		}
-		int pointsScored = 5 + (numRowsCleared - 1) * 5;
-		GameManager.instance.score += pointsScored;
+
+		if (numRowsCleared > 0)
+		{
+			Combo ++;
+
+			// POINTS FORMULA
+			int pointsScored = (int)(2f + Mathf.Pow (2f, (numRowsCleared))) * Combo;
+			GameManager.instance.score += pointsScored;
+			GameManager.instance.CreateScoreFloater(Vector3.zero, pointsScored);
+		}
+		else
+		{
+			Combo = 0;
+		}
+
+		GameManager.instance.CreateScoreMultiplier(Combo);
 	}
 
 	private IEnumerator clearRow(int row)

@@ -27,6 +27,7 @@ public class ColorMatchGameManager : MonoBehaviour {
 	
 	void Update()
 	{
+#if UNITY_STANDALONE
 		if (GameManager.instance.DEBUG_MODE)
 		{
 			// DEBUG
@@ -36,6 +37,7 @@ public class ColorMatchGameManager : MonoBehaviour {
 				StartCoroutine("GenerateRow");
 			}
 		}
+#endif
 
 		// "growing" effect of selected tiles
 		foreach (GameTile gTile in grid)
@@ -178,7 +180,7 @@ public class ColorMatchGameManager : MonoBehaviour {
 		{
 			posArr[i] = clearedList[i].transform.position;
 		}
-		// GameManager.instance.CreateScoreFloater(AverageVector(posArr), points);
+		GameManager.instance.CreateScoreFloater(AverageVector(posArr), points);
 
 
 		// send the piece data to the tetris game
