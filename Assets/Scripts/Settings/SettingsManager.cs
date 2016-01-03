@@ -32,7 +32,8 @@ public class SettingsManager : MonoBehaviour {
 
 	void Update()
 	{
-		if (Application.loadedLevelName.Equals("Game"))
+		if (Application.loadedLevelName.Equals("Game") ||
+		    Application.loadedLevelName.Equals("Tutorial"))
 		{
 			if (ControlSetting == ControlMode.OnScreenButtons)
 			{
