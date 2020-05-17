@@ -1,0 +1,35 @@
+﻿<Properties StartupConfiguration="{C208166C-4ECD-2914-B6F1-17D60936F920}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Game/GridView.cs">
+    <Files>
+      <File FileName="Assets/Scripts/Game/ColorMatchGrid.cs" Line="72" Column="79" />
+      <File FileName="Assets/Scripts/Game/TetrisGrid.cs" Line="68" Column="1" />
+      <File FileName="Assets/Scripts/Game/GameManager.cs" Line="20" Column="53" />
+      <File FileName="Assets/Scripts/Game/GridView.cs" Line="38" Column="4" />
+      <File FileName="Assets/Scripts/Game/GameTile.cs" Line="10" Column="3" />
+      <File FileName="Assets/Scripts/Game/Grid.cs" Line="22" Column="1" />
+      <File FileName="Assets/Scripts/Game/InputManager.cs" Line="33" Column="20" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Kolorfall" expanded="True">
+            <Node name="Assets" expanded="True">
+              <Node name="Scripts" expanded="True">
+                <Node name="Game" expanded="True">
+                  <Node name="GridView.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="294be6d5-e850-4896-83a9-a99eed5efd2b" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

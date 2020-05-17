@@ -1,94 +1,44 @@
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
-public class GameManager : MonoBehaviour {
+public class GameManager : MonoBehaviour
+{
+    public const int NUM_COLORS = 4;
+    public ColorMatchGrid colorMatch;
+    public TetrisGrid tetris;
+    public int[,] piece { get; private set; }
 
-	public static GameManager instance;
+    public static GameManager instance;
 
-	public GameUI gui;
+    // Start is called before the first frame update
+    void Awake() {
+        instance = this;
+    }
 
-	protected TetrisGameManager GM_tetris;
-	protected ColorMatchGameManager GM_colorMatch;
-
-	public ColorMatchInput Input_cm;
-	public TetrisTouchInput Input_tetris;
-
-	public int score;
-
-	// DEBUG
-	public bool DEBUG_MODE = false;
-	// DEBUG
-
-	public CameraShake camShake;
-
-	void Awake()
-	{
-		instance = this;
+	void Start() {
+		colorMatch.RegisterControl(InputManager.instance);
+		//tetris.RegisterControl(InputManager.instance);
+		//tetris.ReceivePiece(new int[1, 1] { { 1 } });
+		//tetris.onPiecePlaced += () => tetris.ReceivePiece(new int[1, 1] { { 1 } });
+		colorMatch.onPieceCleared += () => {
+			tetris.ReceivePiece(colorMatch.piece);
+			SetTetrisControl();
+		};
+		tetris.onPiecePlaced += SetColorMatchControl;
 	}
 
-	void Start()
-	{
-		GM_tetris = GetComponentInChildren<TetrisGameManager>();
-		GM_colorMatch = GetComponentInChildren<ColorMatchGameManager>();
-
-		GM_tetris.InitBoard();
-		GM_colorMatch.InitGrid();
-
-		GetComponent<Animator>().SetTrigger("In");
+	void SetColorMatchControl() {
+        colorMatch.RegisterControl(InputManager.instance);
+        tetris.ReleaseControl(InputManager.instance);
 	}
 
-	public void sendTetrisData(int[,] tetrisPieceData, int tileColor)
-	{
-		GM_tetris.InitPiece (tetrisPieceData, tileColor);
+	void SetTetrisControl() {
+        tetris.RegisterControl(InputManager.instance);
+        colorMatch.ReleaseControl(InputManager.instance);
 	}
 
-	public bool haveTetrisPiece()
-	{return GM_tetris.HavePiece;}
-
-	public void GameOver()
-	{
-		// shake vigorously to show that player has lost
-		camShake.Shake (0.1f, 1.0f);
-
-		Input_cm.enabled = false;
-		Input_tetris.enabled = false;
-
-		StartCoroutine ("GameOverScreen");
-	}
-
-	IEnumerator GameOverScreen()
-	{
-		yield return new WaitForSeconds(1.0f);
-		gui.GameOver();
-	}
-
-	public void Restart()
-	{
-		// reset score, call reset methods for game managers
-		score = 0;
-
-		gui.scoreText.text = "" + 0;
-
-		Input_cm.enabled = true;
-		Input_tetris.enabled = true;
-
-		GM_colorMatch.ResetGrid();
-		GM_tetris.ResetBoard();
-	}
-
-	// virtual because TutorialManager has a separate gui
-	public virtual void CreateScoreFloater(Vector3 pos, int points)
-	{
-		gui.CreateScoreFloater(pos, points);
-	}
-
-	public virtual void CreateScoreMultiplier(int multiplier)
-	{
-		gui.SetScoreMultiplier(multiplier);
-	}
-
-	public void CameraShake(float time, float amt)
-	{
-		camShake.Shake (time, amt);
+	public void Lose() {
+        print("u lose fool!");
 	}
 }
